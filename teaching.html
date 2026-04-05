@@ -1,140 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Your Name</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --sidebar-bg: #f8f9fa;
-            --text-main: #333;
-            --accent-color: #0056b3;
-            --border-color: #e1e4e8;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teaching | Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2744;
+      --gold: #c8a84b;
+      --gold-light: #e8d08a;
+      --cream: #faf8f3;
+      --text: #2c2c2c;
+      --muted: #6b6b6b;
+      --card-bg: #ffffff;
+      --border: #e4e0d6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream); color: var(--text);
+      display: flex; min-height: 100vh;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            background-color: var(--white);
-        }
+    /* ── Sidebar ── */
+    aside {
+      width: 240px; min-width: 240px; background: var(--navy);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: sticky; top: 0; height: 100vh;
+    }
+    .sidebar-photo {
+      width: 100px; height: 100px; border-radius: 50%;
+      object-fit: cover; border: 3px solid var(--gold); margin-bottom: 1rem;
+    }
+    .sidebar-name {
+      font-family: 'Lora', serif; color: #fff;
+      font-size: 1.05rem; font-weight: 600;
+      text-align: center; margin-bottom: 0.25rem;
+    }
+    .sidebar-title {
+      color: var(--gold-light); font-size: 0.78rem; font-weight: 300;
+      text-align: center; margin-bottom: 2rem; letter-spacing: 0.04em;
+    }
+    nav { width: 100%; display: flex; flex-direction: column; gap: 0.25rem; }
+    nav a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.88rem; font-weight: 400;
+      padding: 0.55rem 1rem; border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(200,168,75,0.18); color: var(--gold-light);
+    }
+    nav a.active { font-weight: 500; }
 
-        /* Sidebar - Locked to the left */
-        #sidebar {
-            width: 250px;
-            background-color: var(--sidebar-bg);
-            height: 100vh;
-            position: fixed; /* Keeps sidebar from scrolling */
-            top: 0;
-            left: 0;
-            padding: 40px 20px;
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-        }
+    /* ── Main ── */
+    main { flex: 1; padding: 3rem 3.5rem; max-width: 860px; }
+    h1 {
+      font-family: 'Lora', serif; font-size: 2.2rem;
+      color: var(--navy); margin-bottom: 0.4rem;
+    }
+    .page-subtitle {
+      color: var(--muted); font-size: 1rem; font-weight: 300;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--gold); padding-bottom: 1.2rem;
+    }
+    section { margin-bottom: 2.8rem; }
+    section > h2 {
+      font-family: 'Lora', serif; font-size: 1.3rem;
+      color: var(--navy); margin-bottom: 1.2rem;
+    }
 
-        #sidebar img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    /* Philosophy */
+    .philosophy {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px; padding: 1.4rem 1.6rem;
+      font-size: 0.95rem; color: var(--text);
+      line-height: 1.8; margin-bottom: 2.8rem;
+    }
+    .philosophy em { font-family: 'Lora', serif; color: var(--navy); }
 
-        #sidebar h1 { font-size: 1.3rem; margin: 0; text-align: center; color: #222; }
-        #sidebar p { font-size: 0.85rem; color: #666; margin: 5px 0 25px 0; text-align: center; }
+    /* Course cards */
+    .course-list { display: flex; flex-direction: column; gap: 1rem; }
+    .course-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.3rem 1.5rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 0.3rem 1rem; align-items: start;
+      transition: border-color 0.2s;
+    }
+    .course-card:hover { border-color: var(--gold); }
+    .course-code {
+      font-size: 0.75rem; font-weight: 500; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 0.15rem;
+    }
+    .course-name {
+      font-family: 'Lora', serif; font-size: 1rem;
+      color: var(--navy); font-weight: 600; grid-column: 1;
+    }
+    .course-role {
+      font-size: 0.8rem; font-weight: 500; padding: 0.2rem 0.65rem;
+      border-radius: 4px; white-space: nowrap;
+      grid-column: 2; grid-row: 1 / 3;
+      align-self: start; margin-top: 0.1rem;
+    }
+    .role-ta { background: rgba(26,39,68,0.08); color: var(--navy); }
+    .role-lecturer { background: rgba(200,168,75,0.18); color: #7a5c10; }
+    .course-meta {
+      font-size: 0.82rem; color: var(--muted);
+      grid-column: 1; line-height: 1.5;
+    }
+    .course-desc {
+      font-size: 0.85rem; color: var(--muted);
+      line-height: 1.6; margin-top: 0.5rem;
+      grid-column: 1 / -1;
+    }
 
-        .nav-links { list-style: none; padding: 0; width: 100%; }
-        .nav-links li { margin: 5px 0; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            display: block;
-            padding: 12px 15px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
+    /* Divider between university groups */
+    .uni-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .uni-header h3 {
+      font-size: 0.85rem; font-weight: 500; color: var(--muted);
+      white-space: nowrap; text-transform: uppercase; letter-spacing: 0.07em;
+    }
+    .uni-header hr {
+      flex: 1; border: none; border-top: 1px solid var(--border);
+    }
 
-        .nav-links a:hover { background: #eef1f4; color: var(--accent-color); }
-        .nav-links a.active {
-            background: white;
-            color: var(--accent-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--accent-color);
-        }
+    /* Statement / mentorship */
+    .mentorship-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .mentor-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.2rem 1.4rem;
+    }
+    .mentor-card h3 {
+      font-size: 0.9rem; font-weight: 500; color: var(--navy);
+      margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .mentor-icon {
+      width: 22px; height: 22px;
+      background: rgba(200,168,75,0.15); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .mentor-icon svg {
+      width: 12px; height: 12px; stroke: var(--gold);
+      fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .mentor-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
 
-        /* Right Side Content - Scrollable */
-        #main-content {
-            margin-left: 250px; /* Must match sidebar width */
-            padding: 60px 50px;
-            width: 100%;
-            max-width: 900px;
-            box-sizing: border-box;
-        }
+    /* Evals quote */
+    .eval-quote {
+      background: var(--navy); color: rgba(255,255,255,0.85);
+      border-radius: 8px; padding: 1.6rem 2rem;
+      margin-top: 1rem; position: relative;
+    }
+    .eval-quote::before {
+      content: '\201C'; font-family: 'Lora', serif;
+      font-size: 4rem; color: var(--gold);
+      position: absolute; top: 0; left: 1.2rem; line-height: 1;
+    }
+    .eval-quote p {
+      font-family: 'Lora', serif; font-style: italic;
+      font-size: 0.95rem; line-height: 1.75;
+      padding-top: 1rem; margin-bottom: 0.7rem;
+    }
+    .eval-quote .attr {
+      font-size: 0.8rem; color: var(--gold-light); font-weight: 500;
+    }
 
-        section { margin-bottom: 50px; }
-        h2 { 
-            font-size: 1.8rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 8px;
-            color: var(--accent-color);
-            margin-bottom: 25px;
-        }
-
-        /* Card theme used across all pages */
-        .content-card {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
-        .content-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .card-title { font-weight: bold; font-size: 1.1rem; display: block; color: #222; }
-
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            #sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); }
-            #main-content { margin-left: 0; padding: 30px 20px; }
-        }
-    </style>
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: auto; position: static; }
+      main { padding: 1.5rem; }
+      .course-card { grid-template-columns: 1fr; }
+      .course-role { grid-column: 1; grid-row: auto; width: fit-content; }
+      .mentorship-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <aside id="sidebar">
-        <img src="https://via.placeholder.com/150" alt="Profile Photo">
-        <h1>Your Name</h1>
-        <p>Mathematics Educator</p>
-        
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="publications.html">Publications</a></li>
-            <li><a href="tutoring.html">Tutoring</a></li>
-            <li><a href="teaching.html">Teaching</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </aside>
+<aside>
+  <img src="https://via.placeholder.com/150" alt="Profile Photo" class="sidebar-photo">
+  <div class="sidebar-name">Your Name</div>
+  <div class="sidebar-title">ECE Researcher &amp; Engineer</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="publications.html">Publications</a>
+    <a href="tutoring.html">Tutoring</a>
+    <a href="teaching.html" class="active">Teaching</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</aside>
 
-    <main id="main-content">
-        <section>
-            <h2>Welcome</h2>
-            <p>I am an educator and researcher dedicated to mathematical excellence. This site serves as a portfolio for my academic work and professional tutoring services.</p>
-            <div class="content-card">
-                <span class="card-title">Latest Update</span>
-                <p>New SAT math practice sets have been added to the Tutoring section.</p>
-            </div>
-        </section>
-    </main>
+<main>
+  <h1>Teaching</h1>
+  <p class="page-subtitle">Courses taught and assisted at the university level in electrical engineering, signal processing, and mathematics.</p>
 
+  <!-- Philosophy -->
+  <div class="philosophy">
+    I believe the most effective engineering education connects formalism to physical intuition. In signal processing
+    and systems courses especially, students benefit far more from understanding <em>why</em> a transform or
+    algorithm works than from memorizing its steps. My goal in every classroom setting — whether as a TA
+    or lecturer — is to build that bridge, and to make the material accessible to students across a wide
+    range of mathematical backgrounds.
+  </div>
+
+  <!-- Courses -->
+  <section>
+    <h2>Courses</h2>
+    <div class="course-list">
+
+      <div class="uni-header">
+        <h3>Your University</h3><hr>
+      </div>
+
+      <div class="course-card">
+        <div class="course-code">ECE XXX</div>
+        <div class="course-name">Signals &amp; Systems</div>
+        <div class="course-role role-ta">Teaching Assistant</div>
+        <div class="course-meta">Semesters: Fall 20XX, Spring 20XX &nbsp;·&nbsp; Enrollment: ~XX students</div>
+        <div class="course-desc">
+          Held weekly recitation sections and office hours covering continuous- and discrete-time signal analysis,
+          Fourier transforms, Laplace and Z-transforms, and LTI systems. Designed and graded homework and exam problems.
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-code">ECE XXX</div>
+        <div class="course-name">Digital Signal Processing</div>
+        <div class="course-role role-ta">Teaching Assistant</div>
+        <div class="course-meta">Semesters: Fall 20XX &nbsp;·&nbsp; Enrollment: ~XX students</div>
+        <div class="course-desc">
+          Supported instruction on DFT/FFT algorithms, FIR/IIR filter design, sampling theory, and spectral estimation.
+          Led lab sessions using MATLAB for hands-on DSP implementation.
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-code">ECE XXX</div>
+        <div class="course-name">Probability &amp; Random Processes for Engineers</div>
+        <div class="course-role role-lecturer">Lecturer</div>
+        <div class="course-meta">Semesters: Spring 20XX &nbsp;·&nbsp; Enrollment: ~XX students</div>
+        <div class="course-desc">
+          Independently delivered lectures on probability theory, random variables, stochastic processes,
+          and their application to communications and signal detection. Developed course materials including
+          problem sets and exams.
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-code">MATH XXX</div>
+        <div class="course-name">Linear Algebra for Engineers</div>
+        <div class="course-role role-ta">Teaching Assistant</div>
+        <div class="course-meta">Semesters: 20XX &nbsp;·&nbsp; Enrollment: ~XX students</div>
+        <div class="course-desc">
+          Conducted recitation sections covering vector spaces, matrix decompositions (SVD, eigendecomposition),
+          and applications to least-squares and systems of equations. Emphasized geometric intuition alongside rigor.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Mentorship approach -->
+  <section>
+    <h2>Approach &amp; Methods</h2>
+    <div class="mentorship-grid">
+      <div class="mentor-card">
+        <h3>
+          <div class="mentor-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          Intuition First
+        </h3>
+        <p>I lead with the physical or geometric meaning of a concept before introducing notation, so students know what they're formalizing.</p>
+      </div>
+      <div class="mentor-card">
+        <h3>
+          <div class="mentor-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          Computation in the Loop
+        </h3>
+        <p>MATLAB and Python examples run alongside theory — students verify formulas numerically before trusting them analytically.</p>
+      </div>
+      <div class="mentor-card">
+        <h3>
+          <div class="mentor-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          Active Office Hours
+        </h3>
+        <p>Office hours are problem-solving sessions, not just Q&amp;A. I ask students to articulate where their understanding breaks down before working through it together.</p>
+      </div>
+      <div class="mentor-card">
+        <h3>
+          <div class="mentor-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          Exam Design
+        </h3>
+        <p>I write problems that test reasoning, not recall — students should be able to reconstruct a result from first principles rather than retrieve a memorized formula.</p>
+      </div>
+    </div>
+
+    <div class="eval-quote">
+      <p>
+        Add a student evaluation quote or testimonial here. This is a great place to include a line from
+        a course evaluation that captures your teaching style or impact.
+      </p>
+      <div class="attr">— Student, Course Name, 20XX</div>
+    </div>
+  </section>
+
+</main>
 </body>
 </html>
