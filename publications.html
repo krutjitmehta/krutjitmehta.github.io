@@ -1,8 +1,138 @@
-<main id="main-content">
-    <section>
-        <h2>Publications</h2>
-        <div class="card">
-            <p><strong>Paper Title</strong><br>Journal Name, 2026</p>
-        </div>
-    </section>
-</main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Your Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-bg: #f8f9fa;
+            --text-main: #333;
+            --accent-color: #0056b3;
+            --border-color: #e1e4e8;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            background-color: var(--white);
+        }
+
+        /* Sidebar - Locked to the left */
+        #sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            height: 100vh;
+            position: fixed; /* Keeps sidebar from scrolling */
+            top: 0;
+            left: 0;
+            padding: 40px 20px;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        #sidebar img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        #sidebar h1 { font-size: 1.3rem; margin: 0; text-align: center; color: #222; }
+        #sidebar p { font-size: 0.85rem; color: #666; margin: 5px 0 25px 0; text-align: center; }
+
+        .nav-links { list-style: none; padding: 0; width: 100%; }
+        .nav-links li { margin: 5px 0; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover { background: #eef1f4; color: var(--accent-color); }
+        .nav-links a.active {
+            background: white;
+            color: var(--accent-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        /* Right Side Content - Scrollable */
+        #main-content {
+            margin-left: 250px; /* Must match sidebar width */
+            padding: 60px 50px;
+            width: 100%;
+            max-width: 900px;
+            box-sizing: border-box;
+        }
+
+        section { margin-bottom: 50px; }
+        h2 { 
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+        }
+
+        /* Card theme used across all pages */
+        .content-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .content-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .card-title { font-weight: bold; font-size: 1.1rem; display: block; color: #222; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            #sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); }
+            #main-content { margin-left: 0; padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside id="sidebar">
+        <img src="https://via.placeholder.com/150" alt="Profile Photo">
+        <h1>Your Name</h1>
+        <p>Mathematics Educator</p>
+        
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="tutoring.html">Tutoring</a></li>
+            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </aside>
+
+    <main id="main-content">
+        <section>
+            <h2>Publications</h2>
+            <div class="content-card">
+                <span class="card-title">On The Convergence of Discrete Systems</span>
+                <p><em>Journal of Mathematical Sciences, 2026</em></p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
