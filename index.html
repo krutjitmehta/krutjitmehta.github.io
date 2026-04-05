@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Academic & Tutoring</title>
+    <title>Home | Your Name</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --text-main: #333;
             --accent-color: #0056b3;
             --border-color: #e1e4e8;
+            --white: #ffffff;
         }
 
         body {
@@ -19,94 +20,99 @@
             color: var(--text-main);
             margin: 0;
             display: flex;
+            background-color: var(--white);
         }
 
-        /* Sidebar Styling */
+        /* Sidebar - Locked to the left */
         #sidebar {
             width: 250px;
             background-color: var(--sidebar-bg);
             height: 100vh;
-            position: fixed;
+            position: fixed; /* Keeps sidebar from scrolling */
+            top: 0;
+            left: 0;
             padding: 40px 20px;
             border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-sizing: border-box;
         }
 
         #sidebar img {
-            width: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
+            object-fit: cover;
             margin-bottom: 20px;
             border: 3px solid white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        #sidebar h1 {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-            text-align: center;
-        }
+        #sidebar h1 { font-size: 1.3rem; margin: 0; text-align: center; color: #222; }
+        #sidebar p { font-size: 0.85rem; color: #666; margin: 5px 0 25px 0; text-align: center; }
 
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .nav-links li { margin: 8px 0; }
-
+        .nav-links { list-style: none; padding: 0; width: 100%; }
+        .nav-links li { margin: 5px 0; }
         .nav-links a {
             text-decoration: none;
             color: var(--text-main);
             font-weight: 500;
             display: block;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: all 0.3s;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            background: #e9ecef;
+        .nav-links a:hover { background: #eef1f4; color: var(--accent-color); }
+        .nav-links a.active {
+            background: white;
             color: var(--accent-color);
-            padding-left: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-color);
         }
 
-        /* Main Content Styling */
+        /* Right Side Content - Scrollable */
         #main-content {
-            margin-left: 290px;
-            padding: 60px 40px;
-            max-width: 850px;
-            flex-grow: 1;
+            margin-left: 250px; /* Must match sidebar width */
+            padding: 60px 50px;
+            width: 100%;
+            max-width: 900px;
+            box-sizing: border-box;
         }
 
-        h2 {
+        section { margin-bottom: 50px; }
+        h2 { 
+            font-size: 1.8rem;
             border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
+            padding-bottom: 8px;
             color: var(--accent-color);
+            margin-bottom: 25px;
         }
 
-        .card {
+        /* Card theme used across all pages */
+        .content-card {
             margin-bottom: 20px;
             padding: 20px;
             background: #fff;
-            border-left: 4px solid var(--accent-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: transform 0.2s;
         }
+        .content-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .card-title { font-weight: bold; font-size: 1.1rem; display: block; color: #222; }
 
-        /* Responsive */
         @media (max-width: 768px) {
             body { flex-direction: column; }
             #sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); }
-            #main-content { margin-left: 0; padding: 20px; }
+            #main-content { margin-left: 0; padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
     <aside id="sidebar">
-        <img src="https://via.placeholder.com/150" alt="Profile Picture">
+        <img src="https://via.placeholder.com/150" alt="Profile Photo">
         <h1>Your Name</h1>
         <p>Mathematics Educator</p>
         
@@ -121,9 +127,12 @@
 
     <main id="main-content">
         <section>
-            <h2>About Me</h2>
-            <p>Welcome to my professional site. I am a researcher and educator specializing in mathematics.</p>
-            <p>Use the navigation menu to explore my research publications, university teaching experience, or my specialized tutoring services for students.</p>
+            <h2>Welcome</h2>
+            <p>I am an educator and researcher dedicated to mathematical excellence. This site serves as a portfolio for my academic work and professional tutoring services.</p>
+            <div class="content-card">
+                <span class="card-title">Latest Update</span>
+                <p>New SAT math practice sets have been added to the Tutoring section.</p>
+            </div>
         </section>
     </main>
 
