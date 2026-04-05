@@ -1,138 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Your Name</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --sidebar-bg: #f8f9fa;
-            --text-main: #333;
-            --accent-color: #0056b3;
-            --border-color: #e1e4e8;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Publications | Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2744;
+      --gold: #c8a84b;
+      --gold-light: #e8d08a;
+      --cream: #faf8f3;
+      --text: #2c2c2c;
+      --muted: #6b6b6b;
+      --card-bg: #ffffff;
+      --border: #e4e0d6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream); color: var(--text);
+      display: flex; min-height: 100vh;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            background-color: var(--white);
-        }
+    /* ── Sidebar ── */
+    aside {
+      width: 240px; min-width: 240px; background: var(--navy);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: sticky; top: 0; height: 100vh;
+    }
+    .sidebar-photo {
+      width: 100px; height: 100px; border-radius: 50%;
+      object-fit: cover; border: 3px solid var(--gold); margin-bottom: 1rem;
+    }
+    .sidebar-name {
+      font-family: 'Lora', serif; color: #fff;
+      font-size: 1.05rem; font-weight: 600;
+      text-align: center; margin-bottom: 0.25rem;
+    }
+    .sidebar-title {
+      color: var(--gold-light); font-size: 0.78rem; font-weight: 300;
+      text-align: center; margin-bottom: 2rem; letter-spacing: 0.04em;
+    }
+    nav { width: 100%; display: flex; flex-direction: column; gap: 0.25rem; }
+    nav a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.88rem; font-weight: 400;
+      padding: 0.55rem 1rem; border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a:hover, nav a.active {
+      background: rgba(200,168,75,0.18); color: var(--gold-light);
+    }
+    nav a.active { font-weight: 500; }
 
-        /* Sidebar - Locked to the left */
-        #sidebar {
-            width: 250px;
-            background-color: var(--sidebar-bg);
-            height: 100vh;
-            position: fixed; /* Keeps sidebar from scrolling */
-            top: 0;
-            left: 0;
-            padding: 40px 20px;
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-        }
+    /* ── Main ── */
+    main { flex: 1; padding: 3rem 3.5rem; max-width: 860px; }
 
-        #sidebar img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    h1 {
+      font-family: 'Lora', serif; font-size: 2.2rem;
+      color: var(--navy); margin-bottom: 0.4rem;
+    }
+    .page-subtitle {
+      color: var(--muted); font-size: 1rem; font-weight: 300;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--gold); padding-bottom: 1.2rem;
+    }
 
-        #sidebar h1 { font-size: 1.3rem; margin: 0; text-align: center; color: #222; }
-        #sidebar p { font-size: 0.85rem; color: #666; margin: 5px 0 25px 0; text-align: center; }
+    /* Filter tabs */
+    .filter-tabs {
+      display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .tab {
+      font-size: 0.82rem; font-weight: 500;
+      padding: 0.4rem 1rem; border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card-bg); color: var(--muted);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .tab.active, .tab:hover {
+      background: var(--navy); color: #fff; border-color: var(--navy);
+    }
 
-        .nav-links { list-style: none; padding: 0; width: 100%; }
-        .nav-links li { margin: 5px 0; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            display: block;
-            padding: 12px 15px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
+    /* Section headers */
+    .pub-section { margin-bottom: 2.8rem; }
+    .pub-section h2 {
+      font-family: 'Lora', serif; font-size: 1.15rem;
+      color: var(--navy); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .pub-section h2 .count {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem; font-weight: 500;
+      background: var(--gold); color: var(--navy);
+      padding: 0.15rem 0.55rem; border-radius: 10px;
+    }
 
-        .nav-links a:hover { background: #eef1f4; color: var(--accent-color); }
-        .nav-links a.active {
-            background: white;
-            color: var(--accent-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--accent-color);
-        }
+    /* Publication card */
+    .pub-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.3rem 1.5rem;
+      margin-bottom: 0.9rem; transition: border-color 0.2s;
+    }
+    .pub-card:hover { border-color: var(--gold); }
 
-        /* Right Side Content - Scrollable */
-        #main-content {
-            margin-left: 250px; /* Must match sidebar width */
-            padding: 60px 50px;
-            width: 100%;
-            max-width: 900px;
-            box-sizing: border-box;
-        }
+    .pub-title {
+      font-family: 'Lora', serif; font-size: 0.98rem;
+      color: var(--navy); font-weight: 600; margin-bottom: 0.3rem;
+      line-height: 1.4;
+    }
+    .pub-authors {
+      font-size: 0.83rem; color: var(--muted);
+      margin-bottom: 0.25rem; line-height: 1.5;
+    }
+    .pub-authors strong { color: var(--text); font-weight: 500; }
+    .pub-venue {
+      font-size: 0.83rem; color: var(--muted);
+      font-style: italic; margin-bottom: 0.7rem;
+    }
+    .pub-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .pub-link {
+      font-size: 0.78rem; font-weight: 500;
+      padding: 0.28rem 0.75rem; border-radius: 4px;
+      text-decoration: none; transition: all 0.2s;
+      border: 1px solid var(--border); color: var(--navy);
+      background: var(--cream);
+    }
+    .pub-link:hover { border-color: var(--gold); color: var(--gold); }
+    .pub-link.pdf { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .pub-link.pdf:hover { background: #253560; border-color: #253560; }
 
-        section { margin-bottom: 50px; }
-        h2 { 
-            font-size: 1.8rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 8px;
-            color: var(--accent-color);
-            margin-bottom: 25px;
-        }
+    .pub-badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 500;
+      padding: 0.12rem 0.55rem; border-radius: 3px;
+      margin-left: 0.4rem; vertical-align: middle;
+    }
+    .badge-journal { background: rgba(200,168,75,0.15); color: #8a6a1a; }
+    .badge-conf { background: rgba(26,39,68,0.1); color: var(--navy); }
+    .badge-preprint { background: rgba(100,100,100,0.1); color: var(--muted); }
 
-        /* Card theme used across all pages */
-        .content-card {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
-        .content-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .card-title { font-weight: bold; font-size: 1.1rem; display: block; color: #222; }
+    /* External links strip */
+    .external-strip {
+      display: flex; gap: 0.8rem; flex-wrap: wrap;
+      padding: 1.2rem 1.5rem;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 8px; margin-bottom: 2.5rem; align-items: center;
+    }
+    .external-strip span { font-size: 0.85rem; color: var(--muted); margin-right: 0.4rem; }
+    .ext-link {
+      font-size: 0.83rem; font-weight: 500; text-decoration: none;
+      color: var(--navy); border-bottom: 1px solid var(--gold);
+      transition: color 0.2s;
+    }
+    .ext-link:hover { color: var(--gold); }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            #sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); }
-            #main-content { margin-left: 0; padding: 30px 20px; }
-        }
-    </style>
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: auto; position: static; }
+      main { padding: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <aside id="sidebar">
-        <img src="https://via.placeholder.com/150" alt="Profile Photo">
-        <h1>Your Name</h1>
-        <p>Mathematics Educator</p>
-        
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="publications.html">Publications</a></li>
-            <li><a href="tutoring.html">Tutoring</a></li>
-            <li><a href="teaching.html">Teaching</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </aside>
+<aside>
+  <img src="https://via.placeholder.com/150" alt="Profile Photo" class="sidebar-photo">
+  <div class="sidebar-name">Your Name</div>
+  <div class="sidebar-title">ECE Researcher &amp; Engineer</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="publications.html" class="active">Publications</a>
+    <a href="tutoring.html">Tutoring</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</aside>
 
-    <main id="main-content">
-        <section>
-            <h2>Publications</h2>
-            <div class="content-card">
-                <span class="card-title">On The Convergence of Discrete Systems</span>
-                <p><em>Journal of Mathematical Sciences, 2026</em></p>
-            </div>
-        </section>
-    </main>
+<main>
+  <h1>Publications</h1>
+  <p class="page-subtitle">Research in radar signal processing, array processing, and applied sensing systems.</p>
+
+  <!-- External profile links -->
+  <div class="external-strip">
+    <span>Also on:</span>
+    <a href="#" class="ext-link" target="_blank">Google Scholar ↗</a>
+    <a href="#" class="ext-link" target="_blank">IEEE Xplore ↗</a>
+    <a href="#" class="ext-link" target="_blank">ResearchGate ↗</a>
+    <a href="#" class="ext-link" target="_blank">ORCID ↗</a>
+  </div>
+
+  <!-- Journal Articles -->
+  <div class="pub-section" id="journals">
+    <h2>Journal Articles <span class="count">N</span></h2>
+
+    <div class="pub-card">
+      <div class="pub-title">
+        Paper Title Here
+        <span class="pub-badge badge-journal">Journal</span>
+      </div>
+      <div class="pub-authors"><strong>Your Name</strong>, Co-Author A, Co-Author B</div>
+      <div class="pub-venue">Journal Name, Vol. X, No. X, pp. XX–XX, 20XX</div>
+      <div class="pub-links">
+        <a href="#" class="pub-link pdf">PDF</a>
+        <a href="#" class="pub-link">DOI</a>
+        <a href="#" class="pub-link">Abstract</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-title">
+        Paper Title Here
+        <span class="pub-badge badge-journal">Journal</span>
+      </div>
+      <div class="pub-authors">Co-Author A, <strong>Your Name</strong>, Co-Author B</div>
+      <div class="pub-venue">Journal Name, Vol. X, No. X, pp. XX–XX, 20XX</div>
+      <div class="pub-links">
+        <a href="#" class="pub-link pdf">PDF</a>
+        <a href="#" class="pub-link">DOI</a>
+        <a href="#" class="pub-link">Abstract</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Conference Papers -->
+  <div class="pub-section" id="conferences">
+    <h2>Conference Papers <span class="count">N</span></h2>
+
+    <div class="pub-card">
+      <div class="pub-title">
+        Paper Title Here
+        <span class="pub-badge badge-conf">Conference</span>
+      </div>
+      <div class="pub-authors"><strong>Your Name</strong>, Co-Author A</div>
+      <div class="pub-venue">Proceedings of Conference Name (ABBREV), City, Country, 20XX</div>
+      <div class="pub-links">
+        <a href="#" class="pub-link pdf">PDF</a>
+        <a href="#" class="pub-link">Slides</a>
+        <a href="#" class="pub-link">DOI</a>
+      </div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-title">
+        Paper Title Here
+        <span class="pub-badge badge-conf">Conference</span>
+      </div>
+      <div class="pub-authors"><strong>Your Name</strong>, Co-Author A, Co-Author B</div>
+      <div class="pub-venue">Proceedings of Conference Name (ABBREV), City, Country, 20XX</div>
+      <div class="pub-links">
+        <a href="#" class="pub-link pdf">PDF</a>
+        <a href="#" class="pub-link">DOI</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Preprints / Under Review -->
+  <div class="pub-section" id="preprints">
+    <h2>Preprints &amp; Under Review <span class="count">N</span></h2>
+
+    <div class="pub-card">
+      <div class="pub-title">
+        Paper Title Here
+        <span class="pub-badge badge-preprint">Under Review</span>
+      </div>
+      <div class="pub-authors"><strong>Your Name</strong>, Co-Author A</div>
+      <div class="pub-venue">Submitted to Journal / Conference Name, 20XX</div>
+      <div class="pub-links">
+        <a href="#" class="pub-link">Preprint</a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
 </body>
 </html>
