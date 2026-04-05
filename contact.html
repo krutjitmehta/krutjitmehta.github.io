@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Your Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --sidebar-bg: #f8f9fa; --text-main: #333; --accent-color: #0056b3; --border-color: #e1e4e8; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text-main); margin: 0; display: flex; }
+        #sidebar { width: 250px; background-color: var(--sidebar-bg); height: 100vh; position: fixed; padding: 40px 20px; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; }
+        #sidebar img { width: 150px; border-radius: 50%; margin-bottom: 20px; border: 3px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        #sidebar h1 { font-size: 1.4rem; margin-bottom: 5px; text-align: center; }
+        .nav-links { list-style: none; padding: 0; width: 100%; margin-top: 20px; }
+        .nav-links li { margin: 8px 0; }
+        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 500; display: block; padding: 10px 15px; border-radius: 5px; transition: all 0.3s; }
+        .nav-links a:hover { background: #e9ecef; color: var(--accent-color); padding-left: 20px; }
+        .nav-links a.active { background: #e9ecef; color: var(--accent-color); border-left: 4px solid var(--accent-color); }
+        #main-content { margin-left: 290px; padding: 60px 40px; max-width: 850px; flex-grow: 1; }
+        h2 { border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; color: var(--accent-color); }
+        .contact-info { margin-top: 30px; font-size: 1.1rem; }
+        .social-links { margin-top: 20px; }
+        .social-links a { font-size: 2rem; margin-right: 20px; color: #555; text-decoration: none; transition: color 0.3s; }
+        .social-links a:hover { color: var(--accent-color); }
+        @media (max-width: 768px) { body { flex-direction: column; } #sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); } #main-content { margin-left: 0; padding: 20px; } }
+    </style>
+</head>
+<body>
+    <aside id="sidebar">
+        <img src="https://via.placeholder.com/150" alt="Profile Picture">
+        <h1>Your Name</h1>
+        <p>Mathematics Educator</p>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="tutoring.html">Tutoring</a></li>
+            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+    </aside>
+
+    <main id="main-content">
+        <section>
+            <h2>Contact Information</h2>
+            <p>I am always open to discussing research collaborations, teaching opportunities, or tutoring inquiries.</p>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> your.email@university.edu</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Office:</strong> Department of Mathematics, Room 402</p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
