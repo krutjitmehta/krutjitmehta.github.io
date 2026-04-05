@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Academic Portfolio</title>
+    <title>Your Name | Academic & Tutoring</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -48,93 +48,58 @@
             text-align: center;
         }
 
-        #sidebar p {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
         .nav-links {
             list-style: none;
             padding: 0;
             width: 100%;
+            margin-top: 20px;
         }
 
-        .nav-links li {
-            margin: 10px 0;
-        }
+        .nav-links li { margin: 8px 0; }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-main);
             font-weight: 500;
             display: block;
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             background: #e9ecef;
             color: var(--accent-color);
+            padding-left: 20px;
         }
 
         /* Main Content Styling */
         #main-content {
             margin-left: 290px;
-            padding: 50px 40px;
-            max-width: 800px;
-        }
-
-        section {
-            margin-bottom: 40px;
+            padding: 60px 40px;
+            max-width: 850px;
+            flex-grow: 1;
         }
 
         h2 {
             border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 5px;
+            padding-bottom: 10px;
             color: var(--accent-color);
         }
 
-        .publication {
+        .card {
             margin-bottom: 20px;
-            padding: 15px;
+            padding: 20px;
             background: #fff;
             border-left: 4px solid var(--accent-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .pub-title {
-            font-weight: bold;
-            display: block;
-        }
-
-        .social-icons a {
-            font-size: 1.5rem;
-            margin: 0 10px;
-            color: #555;
-            transition: color 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            #sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-            #main-content {
-                margin-left: 0;
-                padding: 20px;
-            }
+            #sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); }
+            #main-content { margin-left: 0; padding: 20px; }
         }
     </style>
 </head>
@@ -143,59 +108,22 @@
     <aside id="sidebar">
         <img src="https://via.placeholder.com/150" alt="Profile Picture">
         <h1>Your Name</h1>
-        <p>Ph.D. Student in Mathematics <br> University Name</p>
+        <p>Mathematics Educator</p>
         
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#teaching">Teaching</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="tutoring.html">Tutoring</a></li>
+            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
-        </div>
     </aside>
 
     <main id="main-content">
-        <section id="about">
+        <section>
             <h2>About Me</h2>
-            <p>
-                Hello! I am a researcher focusing on [Your Field]. My work involves [briefly explain your research]. 
-                I am passionate about [Topic A] and [Topic B]. Previously, I studied at [University] and worked with [Lab/Company].
-            </p>
-        </section>
-
-        <section id="publications">
-            <h2>Selected Publications</h2>
-            <div class="publication">
-                <span class="pub-title">On the Properties of Mathematical Structures</span>
-                <span>J. Doe, <strong>Your Name</strong>, A. Colleague</span><br>
-                <em>Journal of Modern Math, 2024</em>
-            </div>
-            <div class="publication">
-                <span class="pub-title">A New Framework for Computational Logic</span>
-                <span><strong>Your Name</strong>, B. Scientist</span><br>
-                <em>Conference on AI, 2023</em>
-            </div>
-        </section>
-
-        <section id="teaching">
-            <h2>Teaching</h2>
-            <ul>
-                <li><strong>MATH 101:</strong> Calculus I (Fall 2025)</li>
-                <li><strong>CS 202:</strong> Algorithms & Data Structures (Spring 2025)</li>
-            </ul>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>
-                The best way to reach me is via email at: <br>
-                <strong>email [at] university [dot] edu</strong>
-            </p>
+            <p>Welcome to my professional site. I am a researcher and educator specializing in mathematics.</p>
+            <p>Use the navigation menu to explore my research publications, university teaching experience, or my specialized tutoring services for students.</p>
         </section>
     </main>
 
