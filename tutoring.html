@@ -273,6 +273,45 @@
 
     .cta-btn:hover { background: var(--gold-light); }
 
+    /* ── In-Person Banner ── */
+    .inperson-banner {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      background: linear-gradient(135deg, #fffbf0 0%, #fef6dc 100%);
+      border: 1.5px solid var(--gold);
+      border-left: 5px solid var(--gold);
+      border-radius: 8px;
+      padding: 1.1rem 1.4rem;
+      margin-bottom: 2.5rem;
+    }
+    .inperson-banner .banner-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .inperson-banner .banner-body { flex: 1; }
+    .inperson-banner .banner-headline {
+      font-family: 'Lora', serif;
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+    .inperson-banner .banner-sub {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .inperson-banner .banner-sub a {
+      color: var(--navy);
+      font-weight: 500;
+      border-bottom: 1px solid var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .inperson-banner .banner-sub a:hover { color: var(--gold); }
+
     @media (max-width: 768px) {
       body { flex-direction: column; }
       aside { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; padding: 1rem; }
@@ -299,6 +338,18 @@
   <main>
     <h1>Tutoring Services</h1>
     <p class="page-subtitle">Math tutoring for high school and college students — from foundational algebra to advanced coursework and standardized tests.</p>
+
+    <!-- In-Person Banner -->
+    <div class="inperson-banner">
+      <div class="banner-icon">📍</div>
+      <div class="banner-body">
+        <div class="banner-headline">Local to City, State?</div>
+        <div class="banner-sub">
+          I may be available for in-person tutoring sessions in the area.
+          <a href="contact.html">Reach out</a> to check availability.
+        </div>
+      </div>
+    </div>
 
     <!-- Subjects -->
     <h2>Subjects I Teach</h2>
