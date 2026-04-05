@@ -1,143 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Your Name</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --sidebar-bg: #f8f9fa;
-            --text-main: #333;
-            --accent-color: #0056b3;
-            --border-color: #e1e4e8;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutoring | Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2744;
+      --gold: #c8a84b;
+      --gold-light: #e8d08a;
+      --cream: #faf8f3;
+      --text: #2c2c2c;
+      --muted: #6b6b6b;
+      --card-bg: #ffffff;
+      --border: #e4e0d6;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            margin: 0;
-            display: flex;
-            background-color: var(--white);
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Sidebar - Locked to the left */
-        #sidebar {
-            width: 250px;
-            background-color: var(--sidebar-bg);
-            height: 100vh;
-            position: fixed; /* Keeps sidebar from scrolling */
-            top: 0;
-            left: 0;
-            padding: 40px 20px;
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-sizing: border-box;
-        }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
 
-        #sidebar img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+    /* ── Sidebar ── */
+    aside {
+      width: 240px;
+      min-width: 240px;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
 
-        #sidebar h1 { font-size: 1.3rem; margin: 0; text-align: center; color: #222; }
-        #sidebar p { font-size: 0.85rem; color: #666; margin: 5px 0 25px 0; text-align: center; }
+    .sidebar-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      margin-bottom: 1rem;
+    }
 
-        .nav-links { list-style: none; padding: 0; width: 100%; }
-        .nav-links li { margin: 5px 0; }
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500;
-            display: block;
-            padding: 12px 15px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
+    .sidebar-name {
+      font-family: 'Lora', serif;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
 
-        .nav-links a:hover { background: #eef1f4; color: var(--accent-color); }
-        .nav-links a.active {
-            background: white;
-            color: var(--accent-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--accent-color);
-        }
+    .sidebar-title {
+      color: var(--gold-light);
+      font-size: 0.78rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 2rem;
+      letter-spacing: 0.04em;
+    }
 
-        /* Right Side Content - Scrollable */
-        #main-content {
-            margin-left: 250px; /* Must match sidebar width */
-            padding: 60px 50px;
-            width: 100%;
-            max-width: 900px;
-            box-sizing: border-box;
-        }
+    nav {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
 
-        section { margin-bottom: 50px; }
-        h2 { 
-            font-size: 1.8rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 8px;
-            color: var(--accent-color);
-            margin-bottom: 25px;
-        }
+    nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      padding: 0.55rem 1rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
 
-        /* Card theme used across all pages */
-        .content-card {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
-        .content-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .card-title { font-weight: bold; font-size: 1.1rem; display: block; color: #222; }
+    nav a:hover, nav a.active {
+      background: rgba(200,168,75,0.18);
+      color: var(--gold-light);
+    }
 
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            #sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); }
-            #main-content { margin-left: 0; padding: 30px 20px; }
-        }
-    </style>
+    nav a.active {
+      font-weight: 500;
+    }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      padding: 3rem 3.5rem;
+      max-width: 860px;
+    }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: 2.2rem;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .page-subtitle {
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 1.2rem;
+    }
+
+    /* ── Subjects Grid ── */
+    h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+    }
+
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .subject-tag {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 0.65rem 1rem;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* ── Services ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+
+    .service-price {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .service-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.4rem 1.6rem;
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '\201C';
+      font-family: 'Lora', serif;
+      font-size: 4rem;
+      color: var(--gold-light);
+      position: absolute;
+      top: -0.2rem;
+      left: 1rem;
+      line-height: 1;
+    }
+
+    .testimonial p {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+      padding-top: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .testimonial-author {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    .cta-strip {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .cta-strip p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .cta-btn {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 5px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .cta-btn:hover { background: var(--gold-light); }
+
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: auto; position: static; flex-direction: row; flex-wrap: wrap; padding: 1rem; }
+      main { padding: 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <aside id="sidebar">
-        <img src="https://via.placeholder.com/150" alt="Profile Photo">
-        <h1>Your Name</h1>
-        <p>Mathematics Educator</p>
-        
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="publications.html">Publications</a></li>
-            <li><a href="tutoring.html">Tutoring</a></li>
-            <li><a href="teaching.html">Teaching</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </aside>
+  <aside>
+    <img src="https://via.placeholder.com/150" alt="Profile Photo" class="sidebar-photo">
+    <div class="sidebar-name">Your Name</div>
+    <div class="sidebar-title">Mathematics Educator</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="publications.html">Publications</a>
+      <a href="tutoring.html" class="active">Tutoring</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
 
-    <main id="main-content">
-        <section>
-            <h2>Tutoring Services</h2>
-            <div class="content-card">
-                <span class="card-title">SAT & Standardized Testing</span>
-                <p>1-on-1 and group sessions focusing on mental math, algebraic speed, and test-taking logic.</p>
-            </div>
-            <div class="content-card">
-                <span class="card-title">High School Math</span>
-                <p>Curriculum support for Algebra, Geometry, and Pre-Calculus.</p>
-            </div>
-        </section>
-    </main>
+  <main>
+    <h1>Tutoring Services</h1>
+    <p class="page-subtitle">Math tutoring for high school and college students — from foundational algebra to advanced coursework and standardized tests.</p>
+
+    <!-- Subjects -->
+    <h2>Subjects I Teach</h2>
+    <div class="subjects-grid">
+      <div class="subject-tag">Algebra 1 &amp; 2</div>
+      <div class="subject-tag">Geometry</div>
+      <div class="subject-tag">Pre-Calculus</div>
+      <div class="subject-tag">Trigonometry</div>
+      <div class="subject-tag">AP Calculus AB</div>
+      <div class="subject-tag">AP Calculus BC</div>
+      <div class="subject-tag">AP Statistics</div>
+      <div class="subject-tag">AP Precalculus</div>
+      <div class="subject-tag">Calculus I &amp; II</div>
+      <div class="subject-tag">Calculus III</div>
+      <div class="subject-tag">Linear Algebra</div>
+      <div class="subject-tag">Differential Equations</div>
+      <div class="subject-tag">Discrete Mathematics</div>
+      <div class="subject-tag">Probability &amp; Statistics</div>
+      <div class="subject-tag">SAT Math</div>
+      <div class="subject-tag">ACT Math</div>
+    </div>
+
+    <!-- Services -->
+    <h2>Session Options</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>One-on-One Session</h3>
+        <div class="service-price">$XX / hr</div>
+        <p>Personalized sessions tailored to your current coursework, homework, or upcoming exams. Flexible scheduling via Zoom or in person.</p>
+      </div>
+      <div class="service-card">
+        <h3>Weekly Package</h3>
+        <div class="service-price">$XX / hr</div>
+        <p>Discounted rate for students committing to regular weekly sessions. Ideal for building consistent understanding throughout a semester.</p>
+      </div>
+      <div class="service-card">
+        <h3>Exam Prep (SAT / ACT / AP)</h3>
+        <div class="service-price">$XX / hr</div>
+        <p>Targeted preparation for standardized tests and AP exams — strategy, pacing, and deep review of high-yield topics.</p>
+      </div>
+      <div class="service-card">
+        <h3>Group Sessions (2–4 Students)</h3>
+        <div class="service-price">$XX / hr per student</div>
+        <p>Cost-effective collaborative sessions for classmates studying the same material. Great for problem sets and exam review.</p>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <h2>What Students Say</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>I went from barely passing pre-calc to getting a 5 on the AP Calc AB exam. The way concepts were broken down made everything click in a way my class never did.</p>
+        <div class="testimonial-author">— High school junior, AP Calculus AB</div>
+      </div>
+      <div class="testimonial">
+        <p>I was completely lost in Linear Algebra my sophomore year. After just a few sessions I finally understood what eigenvalues actually mean. Incredibly patient and clear.</p>
+        <div class="testimonial-author">— College sophomore, Linear Algebra</div>
+      </div>
+      <div class="testimonial">
+        <p>My SAT Math score went up 100 points after our prep sessions. We focused on exactly the problem types I kept missing and built up my confidence for test day.</p>
+        <div class="testimonial-author">— High school senior, SAT Prep</div>
+      </div>
+    </div>
+
+    <div class="cta-strip">
+      <p>Ready to get started? Reach out to schedule a first session.</p>
+      <a href="contact.html" class="cta-btn">Contact Me →</a>
+    </div>
+  </main>
 
 </body>
 </html>
