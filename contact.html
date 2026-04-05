@@ -322,7 +322,7 @@
           </div>
           <div>
             <div class="info-label">Email</div>
-            <div class="info-value"><a href="mailto:krutjitmehta@gmail.com">krutjitmehta@gmail.com</a></div>
+            <div class="info-value"><a href="/cdn-cgi/l/email-protection#5c372e2928363528313934283d1c3b313d3530723f3331"><span class="__cf_email__" data-cfemail="711a0304051b18051c1419051031161c10181d5f121e1c">[email&#160;protected]</span></a></div>
           </div>
         </div>
 
@@ -341,85 +341,66 @@
         </div>
       </div>
 
+
       <!-- Form Card -->
       <div class="form-card">
         <h2>Send a Message</h2>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" placeholder="Jane Smith">
+        <form action="https://formsubmit.co/krutjitmehta@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Tutoring Inquiry from Website!">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://krutjitmehta.github.io/contact.html">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="Jane Smith">
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" required placeholder="jane@example.com">
+            </div>
           </div>
+
           <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" placeholder="jane@example.com">
+            <label for="subject">Subject / Course</label>
+            <select id="subject" name="subject">
+              <option value="" disabled selected>Select a subject…</option>
+              <optgroup label="High School">
+                <option>Algebra 1 or 2</option>
+                <option>Geometry</option>
+                <option>Pre-Calculus / Trigonometry</option>
+                <option>AP Calculus AB</option>
+                <option>AP Calculus BC</option>
+                <option>AP Statistics</option>
+                <option>AP Precalculus</option>
+              </optgroup>
+              <optgroup label="Exam Prep">
+                <option>SAT Math</option>
+                <option>ACT Math</option>
+              </optgroup>
+              <optgroup label="College">
+                <option>Calculus I / II / III</option>
+                <option>Linear Algebra</option>
+                <option>Differential Equations</option>
+                <option>Discrete Mathematics</option>
+                <option>Probability &amp; Statistics</option>
+              </optgroup>
+              <option>Other / Not sure yet</option>
+            </select>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="subject">Subject / Course</label>
-          <select id="subject">
-            <option value="" disabled selected>Select a subject…</option>
-            <optgroup label="High School">
-              <option>Algebra 1 or 2</option>
-              <option>Geometry</option>
-              <option>Pre-Calculus / Trigonometry</option>
-              <option>AP Calculus AB</option>
-              <option>AP Calculus BC</option>
-              <option>AP Statistics</option>
-              <option>AP Precalculus</option>
-            </optgroup>
-            <optgroup label="Exam Prep">
-              <option>SAT Math</option>
-              <option>ACT Math</option>
-            </optgroup>
-            <optgroup label="College">
-              <option>Calculus I / II / III</option>
-              <option>Linear Algebra</option>
-              <option>Differential Equations</option>
-              <option>Discrete Mathematics</option>
-              <option>Probability &amp; Statistics</option>
-            </optgroup>
-            <option>Other / Not sure yet</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell me a bit about where you are in the course, what you're struggling with, and what kind of help you're looking for."></textarea>
+          </div>
 
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell me a bit about where you are in the course, what you're struggling with, and what kind of help you're looking for."></textarea>
-        </div>
-
-        <a id="send-btn" href="#" class="submit-btn">Send Message</a>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
       </div>
 
     </div>
   </main>
-
-  <script>
-    document.getElementById('send-btn').addEventListener('click', function(e) {
-      e.preventDefault();
-      const name    = document.getElementById('name').value.trim();
-      const email   = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value;
-      const message = document.getElementById('message').value.trim();
-
-      if (!name || !email || !message) {
-        alert('Please fill in your name, email, and message before sending.');
-        return;
-      }
-
-      const to      = 'your.email@example.com';
-      const subLine = encodeURIComponent('Tutoring Inquiry' + (subject ? ': ' + subject : ''));
-      const body    = encodeURIComponent(
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        (subject ? 'Subject: ' + subject + '\n' : '') +
-        '\n' + message
-      );
-
-      window.location.href = `mailto:${to}?subject=${subLine}&body=${body}`;
-    });
-  </script>
 
 </body>
 </html>
