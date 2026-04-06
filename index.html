@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -61,7 +60,7 @@ nav a:hover, nav a.active {
 }
 nav a.active { font-weight: 500; }
 
-/* ── Mobile header (hidden on desktop) ── */
+/* ── Mobile header ── */
 .mobile-header { display: none; }
 .mobile-nav { display: none; }
 
@@ -121,7 +120,7 @@ section h2 {
 .interest-card h3 { font-size: 0.9rem; font-weight: 500; color: var(--navy); margin-bottom: 0.3rem; }
 .interest-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
-/* Education timeline */
+/* Timeline */
 .timeline { display: flex; flex-direction: column; gap: 0; }
 .timeline-item { display: flex; gap: 1.2rem; padding-bottom: 1.4rem; position: relative; }
 .timeline-item:not(:last-child)::after {
@@ -143,78 +142,34 @@ section h2 {
 .timeline-body h3 { font-size: 0.92rem; font-weight: 500; color: var(--navy); margin-bottom: 0.1rem; }
 .timeline-body .inst { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.1rem; }
 .timeline-body .year { font-size: 0.78rem; color: var(--gold); font-weight: 500; }
-
-/* News */
-.news-list { display: flex; flex-direction: column; gap: 0.7rem; }
-.news-item {
-  display: flex; gap: 1rem; align-items: flex-start;
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: 6px; padding: 0.9rem 1.1rem;
-}
-.news-date { font-size: 0.75rem; font-weight: 500; color: var(--gold); white-space: nowrap; padding-top: 0.1rem; min-width: 68px; }
-.news-text { font-size: 0.88rem; color: var(--text); line-height: 1.55; }
+.timeline-body .location { font-size: 0.82rem; color: var(--muted); font-style: italic; margin-bottom: 0.1rem;}
+.timeline-body p { font-size: 0.82rem; color: var(--muted); margin-top: 0.4rem; line-height: 1.5; }
 
 /* ── Mobile only ── */
 @media (max-width: 768px) {
   body { flex-direction: column; }
   aside { display: none; }
-
   .mobile-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--navy);
-    padding: 0.9rem 1.2rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--navy); padding: 0.9rem 1.2rem;
+    position: sticky; top: 0; z-index: 100;
   }
   .mobile-header-left { display: flex; align-items: center; gap: 0.75rem; }
-  .mobile-photo {
-    width: 36px; height: 36px;
-    border-radius: 50%; object-fit: cover;
-    border: 2px solid var(--gold); flex-shrink: 0;
-  }
+  .mobile-photo { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); flex-shrink: 0; }
   .mobile-name { font-family: 'Lora', serif; color: #fff; font-size: 0.95rem; font-weight: 600; line-height: 1.2; }
   .mobile-subtitle { color: var(--gold-light); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.03em; }
-  .hamburger {
-    background: none; border: none; cursor: pointer;
-    padding: 0.3rem; display: flex; flex-direction: column; gap: 5px;
-  }
-  .hamburger span {
-    display: block; width: 22px; height: 2px;
-    background: #fff; border-radius: 2px;
-    transition: transform 0.25s, opacity 0.25s;
-    transform-origin: center;
-  }
+  .hamburger { background: none; border: none; cursor: pointer; padding: 0.3rem; display: flex; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-nav {
-    display: block;
-    background: var(--navy);
-    border-top: 1px solid rgba(200,168,75,0.25);
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease;
-  }
+  .mobile-nav { display: block; background: var(--navy); border-top: 1px solid rgba(200,168,75,0.25); overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
   .mobile-nav.open { max-height: 300px; }
-  .mobile-nav a {
-    display: block; color: rgba(255,255,255,0.8);
-    text-decoration: none; font-size: 0.95rem;
-    padding: 0.85rem 1.4rem;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: background 0.2s, color 0.2s;
-  }
-  .mobile-nav a:hover, .mobile-nav a.active { background: rgba(200,168,75,0.15); color: var(--gold-light); }
-  .mobile-nav a.active { font-weight: 500; }
-
+  .mobile-nav a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; padding: 0.85rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
   main { padding: 1.5rem; }
   .hero { flex-direction: column; }
   .interest-grid { grid-template-columns: 1fr; }
 }
-
   </style>
 </head>
 <body>
@@ -257,24 +212,21 @@ section h2 {
   <div class="hero">
     <div class="hero-text">
       <h1>Krutant J. Mehta, Ph.D.</h1>
-      <div class="role">Radio Frequency Engineer</div>
+      <div class="role">Electrical Engineer & Educator</div>
       <p>
-        I am an electrical and computer engineer specializing in radio frequency (RF) engineering with experience in 
-        radar signal processing, FPGA design, communication systems, navigation systems, and antenna arrays. My work
-        spans algorithm development, waveform design, and system-level analysis — bridging theoretical foundations
-        with real-world engineering constraints. Alongside my industry work, I teach and tutor math and engineering
-        courses to help the next generation of engineers build lasting intuition.
+        I am an electrical and computer engineer with experience in Radio Frequency (RF) engineering,
+        radar signal processing, FPGA design, and antenna arrays. Alongside my industry work, I am a professional
+        SAT tutor helping students build mathematical intuition and academic confidence.
       </p>
       <div class="hero-links">
         <a href="publications.html" class="btn-primary">View Publications</a>
         <a href="contact.html" class="btn-outline">Contact</a>
-        <a href="#" class="btn-outline">CV / Résumé ↗</a>
         <a href="https://www.linkedin.com/in/krutant-mehta/" class="btn-outline" target="_blank">LinkedIn ↗</a>
       </div>
     </div>
   </div>
 
-  <section>
+<section>
     <h2>Research Interests</h2>
     <div class="interest-grid">
       <div class="interest-card">
@@ -290,8 +242,26 @@ section h2 {
         <p>Parameter estimation, detection theory, and spectral analysis applied to sensing and communications.</p>
       </div>
       <div class="interest-card">
-        <h3>Applied Machine Learning</h3>
-        <p>Data-driven approaches for classification and anomaly detection in radar and sensor fusion contexts.</p>
+        <h3>FPGA Design</h3>
+        <p>Development of robust, real-time RF data processing systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Professional Activities</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">
+          <svg viewBox="0 0 24 24"><path d="M20 7h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 4h4v3h-4V4z"/></svg>
+        </div>
+        <div class="timeline-body">
+          <h3>Senior Professional Staff</h3>
+          <div class="inst">Johns Hopkins University Applied Physics Laboratory</div>
+		  <div class="location">Laurel, Maryland</div>
+		  <div class="year">2025 – Present</div>
+          <p></p>
+        </div>
       </div>
     </div>
   </section>
@@ -321,24 +291,6 @@ section h2 {
       </div>
     </div>
   </section>
-
-  <section>
-    <h2>News &amp; Updates</h2>
-    <div class="news-list">
-      <div class="news-item">
-        <div class="news-date">Month 20XX</div>
-        <div class="news-text">New paper submitted to <em>[Journal / Conference Name]</em> — details coming soon.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Month 20XX</div>
-        <div class="news-text">Presented work on <em>[Topic]</em> at <em>[Conference Name]</em>.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Month 20XX</div>
-        <div class="news-text">Joined <em>[Company / Lab]</em> as an R&amp;D Engineer focused on radar systems.</div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <script>
@@ -347,12 +299,6 @@ section h2 {
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
     mobileNav.classList.toggle('open');
-  });
-  mobileNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileNav.classList.remove('open');
-    });
   });
 </script>
 
