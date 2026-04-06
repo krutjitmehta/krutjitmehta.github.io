@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -17,390 +18,225 @@
       --card-bg: #ffffff;
       --border: #e4e0d6;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); display: flex; min-height: 100vh; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      display: flex;
-      min-height: 100vh;
-    }
+```
+/* ── Sidebar ── */
+aside { width: 240px; min-width: 240px; background: var(--navy); display: flex; flex-direction: column; align-items: center; padding: 2.5rem 1.5rem 2rem; position: sticky; top: 0; height: 100vh; }
+.sidebar-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); margin-bottom: 1rem; }
+.sidebar-name { font-family: 'Lora', serif; color: #fff; font-size: 1.05rem; font-weight: 600; text-align: center; margin-bottom: 0.25rem; }
+.sidebar-title { color: var(--gold-light); font-size: 0.78rem; font-weight: 300; text-align: center; margin-bottom: 2rem; letter-spacing: 0.04em; }
+nav { width: 100%; display: flex; flex-direction: column; gap: 0.25rem; }
+nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 400; padding: 0.55rem 1rem; border-radius: 6px; transition: background 0.2s, color 0.2s; }
+nav a:hover, nav a.active { background: rgba(200,168,75,0.18); color: var(--gold-light); }
+nav a.active { font-weight: 500; }
 
-    /* ── Sidebar ── */
-    aside {
-      width: 240px;
-      min-width: 240px;
-      background: var(--navy);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2.5rem 1.5rem 2rem;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-    }
+/* ── Mobile header (hidden on desktop) ── */
+.mobile-header { display: none; }
+.mobile-nav { display: none; }
 
-    .sidebar-photo {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--gold);
-      margin-bottom: 1rem;
-    }
+/* ── Main ── */
+main { flex: 1; padding: 3rem 3.5rem; max-width: 860px; }
+h1 { font-family: 'Lora', serif; font-size: 2.2rem; color: var(--navy); margin-bottom: 0.4rem; }
+.page-subtitle { color: var(--muted); font-size: 1rem; font-weight: 300; margin-bottom: 2.5rem; border-bottom: 2px solid var(--gold); padding-bottom: 1.2rem; }
 
-    .sidebar-name {
-      font-family: 'Lora', serif;
-      color: #fff;
-      font-size: 1.05rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 0.25rem;
-    }
+.contact-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 2rem; align-items: start; }
 
-    .sidebar-title {
-      color: var(--gold-light);
-      font-size: 0.78rem;
-      font-weight: 300;
-      text-align: center;
-      margin-bottom: 2rem;
-      letter-spacing: 0.04em;
-    }
+.info-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.8rem; }
+.info-card h2 { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--navy); margin-bottom: 1.2rem; }
+.info-row { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 1.1rem; }
+.info-icon { width: 32px; height: 32px; background: rgba(200,168,75,0.12); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+.info-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.info-label { font-size: 0.72rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.15rem; }
+.info-value { font-size: 0.9rem; color: var(--text); }
+.info-value a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); transition: color 0.2s; }
+.info-value a:hover { color: var(--gold); }
+.availability-note { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
-    nav {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
+.form-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.8rem; }
+.form-card h2 { font-family: 'Lora', serif; font-size: 1.05rem; color: var(--navy); margin-bottom: 1.4rem; }
+.form-group { margin-bottom: 1.1rem; }
+label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+input[type="text"], input[type="email"], select, textarea { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text); background: var(--cream); border: 1px solid var(--border); border-radius: 5px; padding: 0.65rem 0.9rem; transition: border-color 0.2s, box-shadow 0.2s; outline: none; appearance: none; }
+input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,168,75,0.12); }
+textarea { resize: vertical; min-height: 110px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.submit-btn { display: inline-block; margin-top: 0.5rem; background: var(--navy); color: #fff; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; padding: 0.75rem 2rem; border-radius: 5px; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+.submit-btn:hover { background: #253560; }
 
-    nav a {
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 400;
-      padding: 0.55rem 1rem;
-      border-radius: 6px;
-      transition: background 0.2s, color 0.2s;
-    }
+@media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; } }
 
-    nav a:hover, nav a.active {
-      background: rgba(200,168,75,0.18);
-      color: var(--gold-light);
-    }
+/* ── Mobile only ── */
+@media (max-width: 768px) {
+  body { flex-direction: column; }
+  aside { display: none; }
 
-    nav a.active { font-weight: 500; }
+  .mobile-header { display: flex; align-items: center; justify-content: space-between; background: var(--navy); padding: 0.9rem 1.2rem; position: sticky; top: 0; z-index: 100; }
+  .mobile-header-left { display: flex; align-items: center; gap: 0.75rem; }
+  .mobile-photo { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); flex-shrink: 0; }
+  .mobile-name { font-family: 'Lora', serif; color: #fff; font-size: 0.95rem; font-weight: 600; line-height: 1.2; }
+  .mobile-subtitle { color: var(--gold-light); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.03em; }
+  .hamburger { background: none; border: none; cursor: pointer; padding: 0.3rem; display: flex; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; transform-origin: center; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* ── Main ── */
-    main {
-      flex: 1;
-      padding: 3rem 3.5rem;
-      max-width: 860px;
-    }
+  .mobile-nav { display: block; background: var(--navy); border-top: 1px solid rgba(200,168,75,0.25); overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+  .mobile-nav.open { max-height: 300px; }
+  .mobile-nav a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; padding: 0.85rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.2s, color 0.2s; }
+  .mobile-nav a:hover, .mobile-nav a.active { background: rgba(200,168,75,0.15); color: var(--gold-light); }
+  .mobile-nav a.active { font-weight: 500; }
 
-    h1 {
-      font-family: 'Lora', serif;
-      font-size: 2.2rem;
-      color: var(--navy);
-      margin-bottom: 0.4rem;
-    }
+  main { padding: 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+```
 
-    .page-subtitle {
-      color: var(--muted);
-      font-size: 1rem;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
-      border-bottom: 2px solid var(--gold);
-      padding-bottom: 1.2rem;
-    }
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    /* ── Contact Info Card ── */
-    .info-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.8rem;
-    }
-
-    .info-card h2 {
-      font-family: 'Lora', serif;
-      font-size: 1.05rem;
-      color: var(--navy);
-      margin-bottom: 1.2rem;
-    }
-
-    .info-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .info-icon {
-      width: 32px;
-      height: 32px;
-      background: rgba(200,168,75,0.12);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .info-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--gold);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .info-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      margin-bottom: 0.15rem;
-    }
-
-    .info-value {
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-
-    .info-value a {
-      color: var(--navy);
-      text-decoration: none;
-      border-bottom: 1px solid var(--gold);
-      transition: color 0.2s;
-    }
-
-    .info-value a:hover { color: var(--gold); }
-
-    .availability-note {
-      margin-top: 1.4rem;
-      padding-top: 1.2rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* ── Contact Form ── */
-    .form-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.8rem;
-    }
-
-    .form-card h2 {
-      font-family: 'Lora', serif;
-      font-size: 1.05rem;
-      color: var(--navy);
-      margin-bottom: 1.4rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.1rem;
-    }
-
-    label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.4rem;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    select,
-    textarea {
-      width: 100%;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      color: var(--text);
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      padding: 0.65rem 0.9rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-      appearance: none;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(200,168,75,0.12);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 110px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .submit-btn {
-      display: inline-block;
-      margin-top: 0.5rem;
-      background: var(--navy);
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 0.75rem 2rem;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-
-    .submit-btn:hover { background: #253560; }
-
-    @media (max-width: 900px) {
-      .contact-layout { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 768px) {
-      body { flex-direction: column; }
-      aside { width: 100%; height: auto; position: static; }
-      main { padding: 1.5rem; }
-      .form-row { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
 
-  <aside>
+<div class="mobile-header">
+  <div class="mobile-header-left">
+    <img src="headshot_ieee.jpg" alt="Profile Photo" class="mobile-photo">
+    <div>
+      <div class="mobile-name">Krutant J. Mehta, PhD</div>
+      <div class="mobile-subtitle">Electrical Engineer &amp; Educator</div>
+    </div>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="publications.html">Publications</a>
+  <a href="tutoring.html">Tutoring</a>
+  <a href="teaching.html">Teaching</a>
+  <a href="contact.html" class="active">Contact</a>
+</div>
+
+<aside>
   <img src="headshot_ieee.jpg" alt="Profile Photo" class="sidebar-photo">
   <div class="sidebar-name"> Krutant J. Mehta, PhD </div>
   <div class="sidebar-title">Electrical Engineer &amp; Educator</div>
   <nav>
-      <a href="index.html">Home</a>
-      <a href="publications.html">Publications</a>
-      <a href="tutoring.html">Tutoring</a>
-      <a href="teaching.html">Teaching</a>
-      <a href="contact.html" class="active">Contact</a>
-    </nav>
-  </aside>
+    <a href="index.html">Home</a>
+    <a href="publications.html">Publications</a>
+    <a href="tutoring.html">Tutoring</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</aside>
 
-  <main>
-    <h1>Get in Touch</h1>
-    <p class="page-subtitle">Interested in tutoring? Fill out the form below and I'll get back to you within 24 hours.</p>
+<main>
+  <h1>Get in Touch</h1>
+  <p class="page-subtitle">Interested in tutoring? Fill out the form below and I'll get back to you within 24 hours.</p>
 
-    <div class="contact-layout">
+  <div class="contact-layout">
 
-      <!-- Info Card -->
-      <div class="info-card">
-        <h2>Contact Info</h2>
-
-        <div class="info-row">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div>
-            <div class="info-label">Email</div>
-            <div class="info-value"><a href="mailto:krutjitmehta@gmail.com">krutjitmehta@gmail.com</a></div>
-          </div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div>
-            <div class="info-label">Phone</div>
-            <div class="info-value"><a href="tel:+16174688734">(617) 468-8734</a></div>
-          </div>
-        </div>
-
-        <div class="availability-note">
-          I typically respond within 24 hours. For urgent questions, feel free to call or text directly.
-        </div>
-      </div>
-
-
-      <!-- Form Card -->
-      <div class="form-card">
-        <h2>Send a Message</h2>
-
-        <form action="https://formsubmit.co/krutjitmehta@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New Tutoring Inquiry from Website!">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://krutjitmehta.github.io/contact.html">
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" required placeholder="Jane Smith">
-            </div>
-            <div class="form-group">
-              <label for="email">Your Email</label>
-              <input type="email" id="email" name="email" required placeholder="jane@example.com">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="subject">Subject / Course</label>
-            <select id="subject" name="subject">
-              <option value="" disabled selected>Select a subject…</option>
-              <optgroup label="High School">
-                <option>Algebra 1 or 2</option>
-                <option>Geometry</option>
-                <option>Pre-Calculus / Trigonometry</option>
-                <option>AP Calculus AB</option>
-                <option>AP Calculus BC</option>
-                <option>AP Statistics</option>
-                <option>AP Precalculus</option>
-              </optgroup>
-              <optgroup label="Exam Prep">
-                <option>SAT Math</option>
-                <option>ACT Math</option>
-              </optgroup>
-              <optgroup label="College">
-                <option>Calculus I / II / III</option>
-                <option>Linear Algebra</option>
-                <option>Differential Equations</option>
-                <option>Discrete Mathematics</option>
-                <option>Probability &amp; Statistics</option>
-              </optgroup>
-              <option>Other / Not sure yet</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required placeholder="Tell me a bit about where you are in the course, what you're struggling with, and what kind of help you're looking for."></textarea>
-          </div>
-
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-      </div>
-
+```
+<div class="info-card">
+  <h2>Contact Info</h2>
+  <div class="info-row">
+    <div class="info-icon">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     </div>
-  </main>
+    <div>
+      <div class="info-label">Email</div>
+      <div class="info-value"><a href="mailto:krutjitmehta@gmail.com">krutjitmehta@gmail.com</a></div>
+    </div>
+  </div>
+  <div class="info-row">
+    <div class="info-icon">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.08 6.08l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+    <div>
+      <div class="info-label">Phone</div>
+      <div class="info-value"><a href="tel:+16174688734">(617) 468-8734</a></div>
+    </div>
+  </div>
+  <div class="availability-note">
+    I typically respond within 24 hours. For urgent questions, feel free to call or text directly.
+  </div>
+</div>
+
+<div class="form-card">
+  <h2>Send a Message</h2>
+  <form action="https://formsubmit.co/krutjitmehta@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New Tutoring Inquiry from Website!">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://krutjitmehta.github.io/contact.html">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required placeholder="Jane Smith">
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required placeholder="jane@example.com">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Subject / Course</label>
+      <select id="subject" name="subject">
+        <option value="" disabled selected>Select a subject…</option>
+        <optgroup label="High School">
+          <option>Algebra 1 or 2</option>
+          <option>Geometry</option>
+          <option>Pre-Calculus / Trigonometry</option>
+          <option>AP Calculus AB</option>
+          <option>AP Calculus BC</option>
+          <option>AP Statistics</option>
+          <option>AP Precalculus</option>
+        </optgroup>
+        <optgroup label="Exam Prep">
+          <option>SAT Math</option>
+          <option>ACT Math</option>
+        </optgroup>
+        <optgroup label="College">
+          <option>Calculus I / II / III</option>
+          <option>Linear Algebra</option>
+          <option>Differential Equations</option>
+          <option>Discrete Mathematics</option>
+          <option>Probability &amp; Statistics</option>
+        </optgroup>
+        <option>Other / Not sure yet</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required placeholder="Tell me a bit about where you are in the course, what you're struggling with, and what kind of help you're looking for."></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Send Message</button>
+  </form>
+</div>
+```
+
+  </div>
+</main>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+</script>
 
 </body>
 </html>
