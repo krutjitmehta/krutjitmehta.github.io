@@ -86,6 +86,12 @@ main { flex: 1; padding: 3rem 3.5rem; max-width: 860px; }
   font-size: 0.95rem; color: var(--muted);
   line-height: 1.75; max-width: 540px;
 }
+.hero-photo {
+  width: 160px; height: 160px; flex-shrink: 0;
+  border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--gold);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
 .hero-links {
   display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem;
 }
@@ -168,6 +174,7 @@ section h2 {
   .mobile-nav a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; padding: 0.85rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
   main { padding: 1.5rem; }
   .hero { flex-direction: column; }
+  .hero-photo { width: 120px; height: 120px; align-self: center; }
   .interest-grid { grid-template-columns: 1fr; }
 }
   </style>
@@ -219,11 +226,12 @@ section h2 {
         SAT tutor helping students build mathematical intuition and academic confidence.
       </p>
       <div class="hero-links">
-        <a href="publications.html" class="btn-primary">View Publications</a>
-        <a href="contact.html" class="btn-outline">Contact</a>
+        <a href="contact.html" class="btn-primary">Contact</a>
+        <a href="publications.html" class="btn-outline">View Publications</a>
         <a href="https://www.linkedin.com/in/krutant-mehta/" class="btn-outline" target="_blank">LinkedIn ↗</a>
       </div>
     </div>
+    <img src="headshot_ieee.jpg" alt="Krutant J. Mehta" class="hero-photo">
   </div>
 
 <section>
