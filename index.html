@@ -86,12 +86,6 @@ main { flex: 1; padding: 3rem 3.5rem; max-width: 860px; }
   font-size: 0.95rem; color: var(--muted);
   line-height: 1.75; max-width: 540px;
 }
-.hero-photo {
-  width: 160px; height: 160px; flex-shrink: 0;
-  border-radius: 50%; object-fit: cover;
-  border: 3px solid var(--gold);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-}
 .hero-links {
   display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem;
 }
@@ -173,8 +167,7 @@ section h2 {
   .mobile-nav.open { max-height: 300px; }
   .mobile-nav a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; padding: 0.85rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
   main { padding: 1.5rem; }
-  .hero { flex-direction: row; align-items: flex-start; }
-  .hero-photo { width: 100px; height: 100px; flex-shrink: 0; }
+  .hero { flex-direction: column; }
   .interest-grid { grid-template-columns: 1fr; }
 }
   </style>
@@ -222,16 +215,15 @@ section h2 {
       <div class="role">Electrical Engineer & Educator</div>
       <p>
         I am an electrical and computer engineer with experience in Radio Frequency (RF) engineering,
-        radar signal processing, FPGA design, and antenna arrays. Alongside my industry work, I am a professional
-        SAT tutor helping students build mathematical intuition and academic confidence.
+        radar signal processing, FPGA design, and antenna arrays. Alongside my industry work, I teach 
+		and tutor math and engineering courses to help the next generation of engineers build lasting intuition.
       </p>
       <div class="hero-links">
-        <a href="contact.html" class="btn-primary">Contact</a>
-		<a href="publications.html" class="btn-outline">View Publications</a>
+        <a href="publications.html" class="btn-primary">View Publications</a>
+        <a href="contact.html" class="btn-outline">Contact</a>
         <a href="https://www.linkedin.com/in/krutant-mehta/" class="btn-outline" target="_blank">LinkedIn ↗</a>
       </div>
     </div>
-    <img src="headshot_ieee.jpg" alt="Krutant J. Mehta" class="hero-photo">
   </div>
 
 <section>
