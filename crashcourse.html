@@ -487,11 +487,11 @@
       // EmailJS sends the confirmation email to the student.
       // Apps Script logs the registration to your Google Sheet.
       // If Sheets logging fails it won't block the confirmation email.
-      <!-- const emailPromise = emailjs.send(
+      const emailPromise = emailjs.send(
         'service_7kjznng',   // STEP 3: Replace with your EmailJS Service ID
         'template_vlwzxhp',  // STEP 4: Replace with your EmailJS Template ID
         data
-      ); -->
+      );
 
       const sheetsPromise = fetch(SHEETS_URL, {
         method: 'POST',
