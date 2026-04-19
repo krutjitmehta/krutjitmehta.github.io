@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AP Calc AB Crash Course | Krutant J. Mehta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    :root {
+      --navy: #1a2744;
+      --gold: #c8a84b;
+      --gold-light: #e8d08a;
+      --cream: #faf8f3;
+      --text: #2c2c2c;
+      --muted: #6b6b6b;
+      --card-bg: #ffffff;
+      --border: #e4e0d6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar (desktop only) ── */
+    aside {
+      width: 240px; min-width: 240px;
+      background: var(--navy);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: sticky; top: 0; height: 100vh;
+    }
+    .sidebar-photo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); margin-bottom: 1rem; }
+    .sidebar-name { font-family: 'Lora', serif; color: #fff; font-size: 1.05rem; font-weight: 600; text-align: center; margin-bottom: 0.25rem; }
+    .sidebar-title { color: var(--gold-light); font-size: 0.78rem; font-weight: 300; text-align: center; margin-bottom: 2rem; letter-spacing: 0.04em; }
+    nav { width: 100%; display: flex; flex-direction: column; gap: 0.25rem; }
+    nav a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 400; padding: 0.55rem 1rem; border-radius: 6px; transition: background 0.2s, color 0.2s; }
+    nav a:hover, nav a.active { background: rgba(200,168,75,0.18); color: var(--gold-light); }
+    nav a.active { font-weight: 500; }
+
+    /* ── Mobile header (hidden on desktop) ── */
+    .mobile-wrapper { display: none; }
+    .mobile-nav { display: none; }
+
+    /* ── Main ── */
+    main { flex: 1; padding: 3rem 3.5rem; max-width: 860px; }
+
+    /* ── Hero banner ── */
+    .course-hero {
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 2.2rem 2.4rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(200,168,75,0.08);
+    }
+    .course-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: 60px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: rgba(200,168,75,0.05);
+    }
+    .course-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--gold); background: rgba(200,168,75,0.15);
+      padding: 0.25rem 0.75rem; border-radius: 3px;
+      margin-bottom: 0.9rem;
+    }
+    .course-hero h1 {
+      font-family: 'Lora', serif;
+      font-size: 2rem; color: #fff;
+      line-height: 1.25; margin-bottom: 0.5rem;
+    }
+    .course-hero .hero-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem; margin-bottom: 1.4rem;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 1.2rem;
+    }
+    .hero-meta-item {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-size: 0.85rem; color: var(--gold-light);
+    }
+    .hero-meta-item svg { width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* ── Content sections ── */
+    .section { margin-bottom: 2.4rem; }
+    .section h2 { font-family: 'Lora', serif; font-size: 1.25rem; color: var(--navy); margin-bottom: 1rem; }
+
+    .overview-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 6px; padding: 1.5rem 1.8rem;
+      font-size: 0.93rem; color: var(--text); line-height: 1.85;
+    }
+    .overview-card p + p { margin-top: 0.9rem; }
+
+    /* Topics list */
+    .topics-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    }
+    .topic-item {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.8rem 1rem;
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-size: 0.88rem; color: var(--text);
+    }
+    .topic-check {
+      width: 18px; height: 18px; flex-shrink: 0; margin-top: 0.05rem;
+      background: rgba(200,168,75,0.15); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .topic-check svg { width: 10px; height: 10px; stroke: var(--gold); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Instructor strip */
+    .instructor-strip {
+      display: flex; align-items: center; gap: 1.4rem;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.3rem 1.6rem;
+    }
+    .instructor-photo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); flex-shrink: 0; }
+    .instructor-name { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem; }
+    .instructor-bio { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── Registration form ── */
+    .form-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 2rem 2.2rem;
+    }
+    .form-card h2 { font-family: 'Lora', serif; font-size: 1.25rem; color: var(--navy); margin-bottom: 0.35rem; }
+    .form-card .form-intro { font-size: 0.87rem; color: var(--muted); margin-bottom: 1.6rem; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      color: var(--text); background: var(--cream);
+      border: 1px solid var(--border); border-radius: 5px;
+      padding: 0.65rem 0.9rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none; appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,168,75,0.12);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+
+    .radio-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.2rem; }
+    .radio-option { display: flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; color: var(--text); cursor: pointer; }
+    .radio-option input[type="radio"] { accent-color: var(--gold); width: 15px; height: 15px; cursor: pointer; }
+
+    .submit-btn {
+      width: 100%; margin-top: 0.5rem;
+      background: var(--navy); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem;
+      padding: 0.85rem; border-radius: 6px; border: none;
+      cursor: pointer; transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .submit-btn:hover { background: #253560; }
+    .submit-btn:disabled { background: var(--muted); cursor: not-allowed; }
+
+    /* Success / error states */
+    .form-status {
+      display: none;
+      border-radius: 6px; padding: 1rem 1.2rem;
+      font-size: 0.88rem; margin-top: 1rem; line-height: 1.5;
+    }
+    .form-status.success {
+      display: block;
+      background: rgba(200,168,75,0.12);
+      border: 1px solid var(--gold);
+      color: #6b4f00;
+    }
+    .form-status.error {
+      display: block;
+      background: rgba(180,50,50,0.08);
+      border: 1px solid #c0605a;
+      color: #8b2020;
+    }
+
+    /* ── Mobile only ── */
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      aside { display: none; }
+
+      .mobile-wrapper { display: block; position: sticky; top: 0; z-index: 100; }
+      .mobile-header { display: flex; align-items: center; justify-content: space-between; background: var(--navy); padding: 0.9rem 1.2rem; }
+      .mobile-header-left { display: flex; align-items: center; gap: 0.75rem; }
+      .mobile-photo { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); flex-shrink: 0; }
+      .mobile-name { font-family: 'Lora', serif; color: #fff; font-size: 0.95rem; font-weight: 600; line-height: 1.2; }
+      .mobile-subtitle { color: var(--gold-light); font-size: 0.7rem; font-weight: 300; letter-spacing: 0.03em; }
+      .hamburger { background: none; border: none; cursor: pointer; padding: 0.3rem; display: flex; flex-direction: column; gap: 5px; }
+      .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; transform-origin: center; }
+      .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .hamburger.open span:nth-child(2) { opacity: 0; }
+      .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      .mobile-nav { display: block; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy); border-top: 1px solid rgba(200,168,75,0.25); overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+      .mobile-nav.open { max-height: 300px; }
+      .mobile-nav a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; padding: 0.85rem 1.4rem; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.2s, color 0.2s; }
+      .mobile-nav a:hover, .mobile-nav a.active { background: rgba(200,168,75,0.15); color: var(--gold-light); }
+      .mobile-nav a.active { font-weight: 500; }
+
+      main { padding: 1.5rem; }
+      .course-hero { padding: 1.5rem; }
+      .course-hero h1 { font-size: 1.5rem; }
+      .topics-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .instructor-strip { flex-direction: column; text-align: center; }
+      .form-card { padding: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile header -->
+  <div class="mobile-wrapper">
+    <div class="mobile-header">
+      <div class="mobile-header-left">
+        <img src="headshot_ieee.jpg" alt="Profile Photo" class="mobile-photo">
+        <div>
+          <div class="mobile-name">Krutant J. Mehta</div>
+          <div class="mobile-subtitle">Electrical Engineer &amp; Educator</div>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="publications.html">Publications</a>
+      <a href="tutoring.html">Tutoring</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <!-- Desktop sidebar -->
+  <aside>
+    <img src="headshot_ieee.jpg" alt="Profile Photo" class="sidebar-photo">
+    <div class="sidebar-name">Krutant J. Mehta</div>
+    <div class="sidebar-title">Electrical Engineer &amp; Educator</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="publications.html">Publications</a>
+      <a href="tutoring.html" class="active">Tutoring</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
+
+  <main>
+
+    <!-- Hero -->
+    <div class="course-hero">
+      <div class="course-tag">Free Event</div>
+      <h1>AP Calculus AB<br>Exam Crash Course</h1>
+      <div class="hero-sub">A focused review session designed to get you exam-ready — fast.</div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Saturday, April 25th 2026, 2pm - 3pm EST
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          1 hour
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.82v6.362a1 1 0 0 1-1.447.894L15 14"/><rect x="1" y="6" width="15" height="12" rx="2"/></svg>
+          Live via Google Meet
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg>
+          Free
+        </div>
+      </div>
+    </div>
+
+    <!-- What we'll cover -->
+    <div class="section">
+      <h2>What We'll Cover</h2>
+      <div class="overview-card">
+        <p>
+          This crash course is built around the Free Response Question (FRQ) section of the AP Calculus AB exam —
+          the part most students find hardest to prepare for on their own. We'll work through several example problems
+          that appear every year, break down exactly what the AP graders are looking for, and build a clear strategy
+          for earning partial credit even when you're not sure of the full solution.
+        </p>
+        <p>
+          The session is designed for students who have already covered the core material in class and want a focused,
+          high-efficiency review in the days before the exam. No fluff — just the concepts and techniques that show
+          up most reliably on test day.
+        </p>
+      </div>
+    </div>
+
+    <!-- Topics -->
+    <div class="section">
+      <h2>Topics at a Glance</h2>
+      <div class="topics-grid">
+        <div class="topic-item">
+          <div class="topic-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          FRQ structure and scoring breakdown
+        </div>
+        <div class="topic-item">
+          <div class="topic-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Derivatives and their applications
+        </div>
+        <div class="topic-item">
+          <div class="topic-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Definite and indefinite integrals
+        </div>
+        <div class="topic-item">
+          <div class="topic-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Area between curves
+        </div>
+        <div class="topic-item">
+          <div class="topic-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Accumulation and rate problems
+        </div>
+        <div class="topic-item">
+          <div class="topic-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Partial credit strategies
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructor -->
+    <div class="section">
+      <h2>Your Instructor</h2>
+      <div class="instructor-strip">
+        <img src="headshot_ieee.jpg" alt="Krutant J. Mehta" class="instructor-photo">
+        <div>
+          <div class="instructor-name">Krutant J. Mehta, Ph.D.</div>
+          <div class="instructor-bio">
+            PhD in Electrical &amp; Computer Engineering from Ohio State University with 12+ years of tutoring experience.
+            Krutant has helped dozens of students improve their AP Calc scores through focused, intuition-first instruction
+            that cuts through confusion and builds exam confidence.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration form -->
+    <div class="form-card">
+      <h2>Register for Free</h2>
+      <p class="form-intro">Spots are limited. Register below and you'll receive a confirmation email with the Zoom link shortly after signing up.</p>
+
+      <form id="registrationForm">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="student_name">Full Name *</label>
+            <input type="text" id="student_name" name="student_name" required placeholder="Jane Smith">
+          </div>
+          <div class="form-group">
+            <label for="student_email">Email Address *</label>
+            <input type="email" id="student_email" name="student_email" required placeholder="jane@example.com">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="student_phone">Phone Number</label>
+            <input type="tel" id="student_phone" name="student_phone" placeholder="(555) 123-4567">
+          </div>
+          <div class="form-group">
+            <label for="grade_level">Grade Level *</label>
+            <select id="grade_level" name="grade_level" required>
+              <option value="" disabled selected>Select grade…</option>
+              <option>9th Grade</option>
+              <option>10th Grade</option>
+              <option>11th Grade</option>
+              <option>12th Grade</option>
+              <option>College / Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="school_name">School Name</label>
+          <input type="text" id="school_name" name="school_name" placeholder="e.g. Centennial High School">
+        </div>
+
+        <div class="form-group">
+          <label>Interested in one-on-one tutoring after the session?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="tutoring_interest" value="Yes, definitely"> Yes, definitely
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="tutoring_interest" value="Maybe"> Maybe
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="tutoring_interest" value="No, just the crash course"> No, just the crash course
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+          Register Now — It's Free
+        </button>
+
+        <div class="form-status" id="formStatus"></div>
+
+      </form>
+    </div>
+
+  </main>
+
+  <script>
+    // ── Hamburger menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // ── EmailJS ──
+    // STEP 1: Replace with your EmailJS Public Key
+    emailjs.init('e-bXvPmmn01rp2IE_');
+
+    const form = document.getElementById('registrationForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formStatus = document.getElementById('formStatus');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Disable button while sending
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      // Collect form values
+      const tutor_interest = document.querySelector('input[name="tutoring_interest"]:checked');
+
+      const templateParams = {
+        student_name:      document.getElementById('student_name').value,
+        student_email:     document.getElementById('student_email').value,
+        student_phone:     document.getElementById('student_phone').value || 'Not provided',
+        grade_level:       document.getElementById('grade_level').value,
+        school_name:       document.getElementById('school_name').value || 'Not provided',
+        tutoring_interest: tutor_interest ? tutor_interest.value : 'Not answered',
+      };
+
+      // STEP 2: Replace with your EmailJS Service ID and Template ID
+      emailjs.send('service_7kjznng', 'template_vlwzxhp', templateParams)
+        .then(() => {
+          formStatus.className = 'form-status success';
+          formStatus.textContent = '✓ You\'re registered! Check your email for the Zoom link. See you at the session!';
+          form.reset();
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '✓ Registered!';
+        })
+        .catch((error) => {
+          console.error('EmailJS error:', error);
+          formStatus.className = 'form-status error';
+          formStatus.textContent = 'Something went wrong. Please try again or email krutjitmehta@gmail.com directly.';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Register Now — It\'s Free';
+        });
+    });
+  </script>
+
+</body>
+</html>
