@@ -498,7 +498,7 @@
         body: JSON.stringify(data),
       }).catch(err => console.warn('Sheets logging failed (non-fatal):', err));
 
-<!--       try {
+      try {
         await Promise.all([emailPromise, sheetsPromise]);
         formStatus.className = 'form-status success';
         formStatus.textContent = '✓ You\'re registered! Check your email for the Zoom link. See you at the session!';
@@ -511,7 +511,7 @@
         formStatus.textContent = 'Something went wrong. Please try again or email krutjitmehta@gmail.com directly.';
         submitBtn.disabled = false;
         submitBtn.innerHTML = 'Register Now — It\'s Free';
-      } -->
+      }
     });
   </script>
   
