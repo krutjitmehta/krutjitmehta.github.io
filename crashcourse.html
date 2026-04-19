@@ -437,7 +437,7 @@
     </div>
 
   </main>
-
+  
   <script>
     // ── Hamburger menu ──
     const hamburger = document.getElementById('hamburger');
@@ -457,21 +457,24 @@
     // STEP 1: Replace with your EmailJS Public Key
     emailjs.init('e-bXvPmmn01rp2IE_');
 
+    // STEP 2: Paste your Google Apps Script Web App URL here
+    const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwtLJwBpk44IYrhuX2TjMxH6padS963BjhqUnktbdnHkgTEOuHmYs8Tof_83hpO9Fu3-w/exec';
+
     const form = document.getElementById('registrationForm');
     const submitBtn = document.getElementById('submitBtn');
     const formStatus = document.getElementById('formStatus');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
       // Disable button while sending
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
 
-      // Collect form values
+      // Collect form values once
       const tutor_interest = document.querySelector('input[name="tutoring_interest"]:checked');
 
-      const templateParams = {
+      const data = {
         student_name:      document.getElementById('student_name').value,
         student_email:     document.getElementById('student_email').value,
         student_phone:     document.getElementById('student_phone').value || 'Not provided',
@@ -480,24 +483,38 @@
         tutoring_interest: tutor_interest ? tutor_interest.value : 'Not answered',
       };
 
-      // STEP 2: Replace with your EmailJS Service ID and Template ID
-      emailjs.send('service_7kjznng', 'template_vlwzxhp', templateParams)
-        .then(() => {
-          formStatus.className = 'form-status success';
-          formStatus.textContent = '✓ You\'re registered! Check your email for the Zoom link. See you at the session!';
-          form.reset();
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = '✓ Registered!';
-        })
-        .catch((error) => {
-          console.error('EmailJS error:', error);
-          formStatus.className = 'form-status error';
-          formStatus.textContent = 'Something went wrong. Please try again or email krutjitmehta@gmail.com directly.';
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = 'Register Now — It\'s Free';
-        });
+      // ── Fire both requests in parallel ──
+      // EmailJS sends the confirmation email to the student.
+      // Apps Script logs the registration to your Google Sheet.
+      // If Sheets logging fails it won't block the confirmation email.
+      const emailPromise = emailjs.send(
+        'service_7kjznng',   // STEP 3: Replace with your EmailJS Service ID
+        'template_vlwzxhp',  // STEP 4: Replace with your EmailJS Template ID
+        data
+      );
+
+      const sheetsPromise = fetch(SHEETS_URL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }).catch(err => console.warn('Sheets logging failed (non-fatal):', err));
+
+      try {
+        await Promise.all([emailPromise, sheetsPromise]);
+        formStatus.className = 'form-status success';
+        formStatus.textContent = '✓ You\'re registered! Check your email for the Zoom link. See you at the session!';
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '✓ Registered!';
+      } catch (error) {
+        console.error('EmailJS error:', error);
+        formStatus.className = 'form-status error';
+        formStatus.textContent = 'Something went wrong. Please try again or email krutjitmehta@gmail.com directly.';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Register Now — It\'s Free';
+      }
     });
   </script>
+  
 
 </body>
 </html>
